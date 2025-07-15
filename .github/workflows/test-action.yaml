@@ -9,14 +9,24 @@ jobs:
       - run: |
           echo "Doing some work..."
           sleep 3
-          echo "Hello, World!"
-
+          echo "Hello, World!" | tee hello.txt
+          
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hello-artifact
+          path: hello.txt
+      
   test-action-2:
     runs-on: ubuntu-latest
     name: Super Cool Action
+    needs: test-action
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hello-artifact
       - run: |
           echo "Doing some super cool work..."
           sleep 2
           echo "Goodbye, World!"
+          cat hello.txt
