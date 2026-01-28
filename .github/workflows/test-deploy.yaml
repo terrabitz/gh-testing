@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - run: |
+          echo "deploying dev"
+          sleep 10
+          
+  prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - run: |
+          echo "deploying prod"
+          sleep 10
