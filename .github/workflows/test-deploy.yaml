@@ -15,6 +15,7 @@ jobs:
   prod:
     runs-on: ubuntu-latest
     environment: prod
+    needs: [dev]
     steps:
       - run: |
           echo "deploying prod"
